@@ -37,10 +37,10 @@ const Posts = (props) => {
                             }
                         </Grid>
                         <Typography variant="caption" sx={{ m: 1 }}>
-                            {post.votes}
+                            {post.votes} Votes
                         </Typography>
                         <Typography variant="caption" sx={{ m: 1 }}>
-                            {post.views}
+                            {post.views} Views
                         </Typography>
                     </CardContent>
                 </Card>
