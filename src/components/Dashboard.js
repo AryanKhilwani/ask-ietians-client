@@ -49,14 +49,12 @@ const Dashboard = () => {
       const post = posts[i];
       const { tag } = post;
       for (let j in tag) {
-        console.log(tag[j].name,selectedTag.name,post)
         if (tag[j].name === selectedTag.name) {
           filtered.push(post);
           break;
         }
       }
     }
-    console.log(posts,selectedTag,filtered)
     setPosts(filtered);
   }
   const tags = [{_id:'1',name:'All posts'},{_id:'2',name:'tag1'},{_id:'3',name:'tag2'}]
@@ -66,7 +64,7 @@ const Dashboard = () => {
   
   return (
     <>
-      <Grid container sx={{ mt: 2 }}>
+      <Grid container sx={{ mt: 10 }}>
         <Grid item xs={10} >
           <Posts posts={posts} />
         </Grid>

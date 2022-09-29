@@ -3,15 +3,29 @@ import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import {useNavigate } from "react-router-dom";
 
 
 
 const Posts = (props) => {
+    const Navigate = useNavigate()
     return (
         <div style={{ cursor: 'pointer', maxWidth: '90%' }}>
             {props.posts.map((post) => {
-                return (<Card sx={{ p: 1,m:1 }} onClick={()=>{console.log(post._id)}} key={post._id}>
+
+                return (
+                <Box 
+                key={post._id}
+                
+                    // component={NavLink}
+                    
+                    // to={`/post/${post._id}`}
+                    >
+                    
+                <Card sx={{ p: 1, m: 1 }}
+                    onClick={() => { console.log(post._id); Navigate(`/post/${post._id}`) }}
+                    >
                     <CardContent sx={{ p: 1, minHeight: 84 }}>
                         <Typography variant="h5" component="div" sx={{ m: 1 }}>
                             {post.title}
@@ -23,11 +37,9 @@ const Posts = (props) => {
                             {post.description}
                         </Typography>
                         <Grid container>
-
                             {post.tag.map((tag) => {
                                 return (
                                     <Grid item key={tag._id}>
-
                                         <Typography variant="body2" sx={{ m: 1 }}>
                                             {tag.name}
                                         </Typography>
@@ -45,6 +57,7 @@ const Posts = (props) => {
                     </CardContent>
                 </Card>
 
+                </Box>
 
                 )
             })}
