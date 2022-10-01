@@ -8,6 +8,11 @@ import Postpage from './components/Postpage';
 import SignUp from './components/SignUp';
 import { useEffect } from 'react';
 
+import { getAuth, signOut } from "firebase/auth";
+
+const auth = getAuth();
+
+
 function App() {
   return (
     <>
@@ -31,9 +36,16 @@ function App() {
   );
 }
 const Logout = () => {
+  
   const Navigate = useNavigate()
 useEffect(() => {
-  Navigate('/dashboard')
+  signOut(auth).then(() => {
+    // Sign-out successful.
+    console.log('logged out')
+    Navigate('/dashboard')
+  }).catch((error) => {
+    // An error happened.
+  });
 // eslint-disable-next-line
 }, [])
 
