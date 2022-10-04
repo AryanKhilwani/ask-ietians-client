@@ -1,32 +1,49 @@
 import {  Card, Stack, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-const Replies = () => {
-    const replies = [{
-        _id: 1,
-        author: {
-            name: 'reply author'
-        },
-        comment: 'reply',
-        votes: 10
-    }, {
-        _id: 2,
-        author: {
-            name: 'reply author'
-        },
-        comment: 'reply',
+import ReplyContext from '../context/reply/replyContext'
 
-        votes: 10
-    },
-    {
-        _id: 3,
-        author: {
-            name: 'reply author'
-        },
-        comment: 'reply',
+const Replies = (props) => {
+    const postcontext = useContext(ReplyContext)
+    const { fetchallreplies } = postcontext
+    // let replies = []
+    const [replies, setReplies] = useState()
+    const fetchdata = async ()=>{
+        const reps = await fetchallreplies(props.id);
+        console.log(reps)
+        setReplies(reps)
+    }
+    useEffect(() => {
+        fetchdata();
+        // console.log(rels)
+        
+        // eslint-disable-next-line
+    }, [])
+    const [votes, setVotes] = useState(0)
 
-        votes: 10
-    }]
+    // {
+    //     "upvotes": [],
+    //     "downvotes": [
+    //       "ooZizoLt6XTcCujA0dRho2PX1BA2"
+    //     ],
+    //     "_id": "633c26d0659f220d5092e2dc",
+    //     "post": "633c20b5257cb925f86900e7",
+    //     "comment": "reply to me",
+    //     "author": {
+    //       "isAdmin": false,
+    //       "_id": "633c26d0659f220d5092e2db",
+    //       "name": "Akshat sharma",
+    //       "email": "akshat7509999412@gmail.com",
+    //       "uid": "ooZizoLt6XTcCujA0dRho2PX1BA2"
+    //     },
+    //     "time": "2022-10-04T12:28:00.878Z",
+    //     "__v": 6
+    //   },
+
+    const handleUpvote = () => {
+        setVotes(votes + 1)
+    }
+
     return (
         <>{replies && replies.map((reply) => {
             return (
@@ -41,8 +58,8 @@ const Replies = () => {
                         {reply.comment}
                     </Typography>
 
-                    <Typography variant="caption" sx={{ m: 1 }}>
-                        {reply.votes} Votes
+                    <Typography variant="caption" sx={{ m: 1 }}  onClick={handleUpvote}>
+                        {votes} Votes
                     </Typography>
                 </Stack>
                 </Card>

@@ -59,19 +59,19 @@ export default function SignIn() {
       // );
       
       navigate('/dashboard')
-      try {
+      // try {
         
-        const response = await fetch(url, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-auth-token': idToken
-          },// body data type must match "Content-Type" header
-        });
-      } catch (error) {
-        console.log(error)
-      }
+      //   const response = await fetch(url, {
+      //     method: 'POST',
+      //     mode: 'cors',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'x-auth-token': idToken
+      //     },// body data type must match "Content-Type" header
+      //   });
+      // } catch (error) {
+      //   console.log(error)
+      // }
       localStorage.setItem('x-auth-token',idToken)
     }).catch(function(error) {
       // Handle error

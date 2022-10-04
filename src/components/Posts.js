@@ -31,13 +31,13 @@ const Posts = (props) => {
                             {post.title}
                         </Typography>
                         <Typography variant="overline" sx={{ m: 1 }}>
-                            {post.author.name}
+                            {post.author && post.author.name}
                         </Typography>
                         <Typography variant="body1" sx={{ m: 1 }}>
                             {post.description}
                         </Typography>
                         <Grid container>
-                            {post.tag.map((tag) => {
+                            {post.tags.map((tag) => {
                                 return (
                                     <Grid item key={tag._id}>
                                         <Typography variant="body2" sx={{ m: 1 }}>
@@ -49,10 +49,10 @@ const Posts = (props) => {
                             }
                         </Grid>
                         <Typography variant="caption" sx={{ m: 1 }}>
-                            {post.votes} Votes
+                            {post.upvotes.length-post.downvotes.length} Votes
                         </Typography>
                         <Typography variant="caption" sx={{ m: 1 }}>
-                            {post.views} Views
+                            {/* {post.views} Views */}
                         </Typography>
                     </CardContent>
                 </Card>
