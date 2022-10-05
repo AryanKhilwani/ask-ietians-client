@@ -1,27 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import TextField from '@mui/material/TextField';
 import { Button, Stack } from '@mui/material';
 
+import UserContext from '../context/user/userContext';
+import ReplyContext from '../context/reply/replyContext';
+import { useParams } from 'react-router-dom';
 
 const Postreply = () => {
+    const replycontext = useContext(ReplyContext)
+    const {addReply} = replycontext;
+    const context = useContext(UserContext)
+    const { user } = context;
+
+    const { id } = useParams();
     const [value, setValue] = React.useState('');
     const handleChange = (event) => {
         setValue(event.target.value);
     };
-    const handleClick=()=>{
-        console.log(value)
+    const handleClick = () => {
+        console.log(value,id)
+        addReply(value,id)
     }
     return (
         <Stack spacing={2} alignItems='center'>
             <TextField
-            id="outlined-multiline-flexible"
-            fullWidth
-            multiline
-            rows={4}
-            value={value}
-            onChange={handleChange}/>
-            <Button variant='contained' sx={{maxWidth:'10%'}} onClick={handleClick}>
+                id="outlined-multiline-flexible"
+                fullWidth
+                multiline
+                rows={4}
+                value={value}
+                onChange={handleChange} />
+            <Button variant='contained' sx={{ maxWidth: '10%' }} onClick={handleClick}>
                 Reply
             </Button>
         </Stack>

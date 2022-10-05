@@ -6,14 +6,16 @@ import SignIn from './components/SignIn';
 import { Container } from '@mui/material';
 import Postpage from './components/Postpage';
 import SignUp from './components/SignUp';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth,  } from "firebase/auth";
 import PostState from './context/post/postState';
 
+import './Firebase/firebase';
 import ReplyState from './context/reply/replyState';
 import TagState from './context/tag/tagState';
-import Home from './components/Home';
+import UserContext from './context/user/userContext';
+// import Home from './components/Home';
 
 const auth = getAuth();
 
@@ -50,16 +52,15 @@ function App() {
   );
 }
 const Logout = () => {
-
+const context = useContext(UserContext)
+const {logout} = context
   const Navigate = useNavigate()
+  
+  
   useEffect(() => {
-    signOut(auth).then(() => {
-      // Sign-out successful.
-      console.log('logged out')
-      Navigate('/dashboard')
-    }).catch((error) => {
-      // An error happened.
-    });
+    logout()
+    
+    Navigate('/dashboard')
     // eslint-disable-next-line
   }, [])
 

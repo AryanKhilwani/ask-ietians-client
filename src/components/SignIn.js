@@ -52,13 +52,13 @@ export default function SignIn() {
     auth.currentUser.getIdToken(/* forceRefresh */ true).then(async(idToken)=> {
       // Send token to your backend via HTTPS
       // ...
-      console.log(idToken)
+      // console.log(idToken)
       // const token = jwt.sign(
       //   { _id: user.uid},
       //   'shirogane'
       // );
       
-      navigate('/dashboard')
+      navigate(-1)
       // try {
         
       //   const response = await fetch(url, {

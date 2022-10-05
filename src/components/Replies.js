@@ -4,13 +4,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import ReplyContext from '../context/reply/replyContext'
 
 const Replies = (props) => {
-    const postcontext = useContext(ReplyContext)
-    const { fetchallreplies } = postcontext
+    const replycontext = useContext(ReplyContext)
+    const { fetchallreplies,num } = replycontext
     // let replies = []
     const [replies, setReplies] = useState()
     const fetchdata = async ()=>{
         const reps = await fetchallreplies(props.id);
-        console.log(reps)
+        // console.log(reps)
         setReplies(reps)
     }
     useEffect(() => {
@@ -18,7 +18,7 @@ const Replies = (props) => {
         // console.log(rels)
         
         // eslint-disable-next-line
-    }, [])
+    }, [num])
     const [votes, setVotes] = useState(0)
 
     // {

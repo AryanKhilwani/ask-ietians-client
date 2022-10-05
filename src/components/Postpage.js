@@ -10,7 +10,12 @@ import { Container, Grid, Stack } from "@mui/material";
 import Postreply from './Postreply';
 import Replies from './Replies';
 
+import UserContext from '../context/user/userContext';
 const Postpage = () => {
+    
+  const context = useContext(UserContext)
+  const { user } = context;
+
     const postcontext = useContext(PostContext)
     const { getPostById } = postcontext
 
@@ -95,10 +100,12 @@ const Postpage = () => {
                         </Typography>
                     </CardContent>
                 </Card>
+{
+    user &&
                 <Container maxWidth='md'>
                     <Postreply />
                 </Container>
-
+}
                 <Container>
                     <Replies id={id} />
                 </Container>

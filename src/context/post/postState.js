@@ -18,7 +18,7 @@ const PostState = (props) => {
             },
         });
         const jsondata = await response.json()
-        console.log(jsondata);
+        // console.log(jsondata);
         
         setPost(jsondata)
         return jsondata

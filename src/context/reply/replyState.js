@@ -7,7 +7,7 @@ const ReplyState = (props) => {
     const replies = []
 
     const [reply, setReply] = useState(replies)
-
+    const [num, setNum] = useState(reply.length)
     // const [num, setNum] = useState(note.length)
 
     const fetchallreplies = async (id) => {
@@ -21,6 +21,7 @@ const ReplyState = (props) => {
         // const data = await jsondata;
         console.log(jsondata);
         setReply(jsondata)
+        setNum(jsondata.length)
         return jsondata
 
 
@@ -28,17 +29,21 @@ const ReplyState = (props) => {
 
 
     // add
-    const addReply = async (newReply,id) => {
+    const addReply = async (newReply, id) => {
         // setnote(notes.concat(note))
 
         const response = await fetch(`${HOST}/create/${id}`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'x-auth-token': localStorage.getItem('x-auth-token')
-            }, body: JSON.stringify(newReply)
+            }, body: JSON.stringify({ comment: newReply })
         });
-        console.log(response);
+        const jsondata = await response.json()
+        // setReply(reply.concat(jsondata))
+        setNum(reply.length+1)
+        console.log(reply);
 
         // console.log(note)
     }
@@ -64,7 +69,7 @@ const ReplyState = (props) => {
     }
 
     return (
-        <ReplyContext.Provider value={{reply, fetchallreplies, addReply, upvoteReply,downvoteReply}}>
+        <ReplyContext.Provider value={{num, reply, fetchallreplies, addReply, upvoteReply, downvoteReply }}>
             {props.children}
         </ReplyContext.Provider>
     )

@@ -18,7 +18,7 @@ const TagState = (props) => {
             },
         });
         const jsondata = await response.json()
-        console.log(jsondata);
+        // console.log(jsondata);
         setTag(jsondata)
 
 
