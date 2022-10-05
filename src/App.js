@@ -15,6 +15,7 @@ import './Firebase/firebase';
 import ReplyState from './context/reply/replyState';
 import TagState from './context/tag/tagState';
 import UserContext from './context/user/userContext';
+import CreatePost from './components/CreatePost';
 // import Home from './components/Home';
 
 const auth = getAuth();
@@ -33,14 +34,11 @@ function App() {
               <Routes>
                 <Route exact path='/signin' element={<SignIn />} />
 
+                <Route exact path='/createpost' element={<CreatePost/>} />
                 <Route exact path='/signup' element={<SignUp />} />
                 <Route exact path='/dashboard' element={<Dashboard />} />
-                <Route
-                  path="/post/:id"
-                  element={
-                    <Postpage />}
-                />
-                <Route exact path='/' element={<Dashboard />} />
+                <Route exact path="/post/:id" element={<Postpage />}/>
+                <Route exact path='/' element={<CreatePost />} />
                 <Route exact path='/logout' element={<Logout />} />
               </Routes>
             </Container>
