@@ -16,7 +16,7 @@ import { getAuth } from "firebase/auth";
 import '../Firebase/firebase';
 import UserContext from '../context/user/userContext';
 const pages = ['Dashboard'];
-const settings = ['Profile', 'Logout'];
+const settings = ['createpost','Profile', 'Logout'];
 
 const auth = getAuth();
 
@@ -142,7 +142,7 @@ const ResponsiveAppBar = () => {
 
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={user.displayName} src={user.photoURL} />
+                    <Avatar alt={user.displayName} src={user.photoURL} referrerPolicy={`no-referrer`}/>
                   </IconButton>
                 </Tooltip>
                 <Menu

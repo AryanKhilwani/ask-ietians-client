@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import PostContext from '../context/post/postContext'
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,6 +9,7 @@ import { Container, Grid, Stack } from "@mui/material";
 import Postreply from './Postreply';
 import Replies from './Replies';
 
+import PostContext from '../context/post/postContext'
 import UserContext from '../context/user/userContext';
 const Postpage = () => {
     

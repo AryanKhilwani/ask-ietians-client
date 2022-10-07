@@ -21,6 +21,7 @@ const Postreply = () => {
     const handleClick = () => {
         console.log(value,id)
         addReply(value,id)
+        setValue('')
     }
     return (
         <Stack spacing={2} alignItems='center'>

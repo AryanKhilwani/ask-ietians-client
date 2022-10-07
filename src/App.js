@@ -16,7 +16,7 @@ import ReplyState from './context/reply/replyState';
 import TagState from './context/tag/tagState';
 import UserContext from './context/user/userContext';
 import CreatePost from './components/CreatePost';
-// import Home from './components/Home';
+import Home from './components/Home';
 
 const auth = getAuth();
 
@@ -38,7 +38,7 @@ function App() {
                 <Route exact path='/signup' element={<SignUp />} />
                 <Route exact path='/dashboard' element={<Dashboard />} />
                 <Route exact path="/post/:id" element={<Postpage />}/>
-                <Route exact path='/' element={<CreatePost />} />
+                <Route exact path='/' element={<Home />} />
                 <Route exact path='/logout' element={<Logout />} />
               </Routes>
             </Container>
