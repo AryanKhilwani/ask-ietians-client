@@ -25,6 +25,7 @@ const Dashboard = () => {
     fetchdata()
 
     fetchalltags();
+    // eslint-disable-next-line 
   }, [])
 
   const getPosts = (selectedTag) => {
@@ -57,7 +58,7 @@ const Dashboard = () => {
     <>
       <Grid container sx={{ mt: 10 }}>
         <Grid item xs={10} >
-          <Posts posts={posts} />
+          <Posts posts={posts}/>
         </Grid>
         <Grid item xs={2} sx={{ mt: 1 }}>
           <Tags tags={tags} getPosts={getPosts} />

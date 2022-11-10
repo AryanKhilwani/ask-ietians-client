@@ -11,6 +11,7 @@ const UserState = (props) => {
 
 
     const [user, setUser] = useState(auth.currentUser)
+    const [loading, setLoading] = useState(false)
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -28,6 +29,7 @@ const UserState = (props) => {
         signOut(auth).then(() => {
             // Sign-out successful.
             console.log('logged out')
+            localStorage.clear();
             setUser(null)
         }).catch((error) => {
             // An error happened.

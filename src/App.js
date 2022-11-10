@@ -17,7 +17,7 @@ import TagState from './context/tag/tagState';
 import UserContext from './context/user/userContext';
 import CreatePost from './components/CreatePost';
 import Home from './components/Home';
-
+// eslint-disable-next-line 
 const auth = getAuth();
 
 
@@ -57,7 +57,7 @@ const {logout} = context
   
   useEffect(() => {
     logout()
-    
+    // TODO: clear x-auth-token
     Navigate('/dashboard')
     // eslint-disable-next-line
   }, [])
