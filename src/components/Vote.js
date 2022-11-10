@@ -52,6 +52,7 @@ const Vote = (props) => {
             }
         }
         console.log(upvotes, downvotes, props.metadata.upvotes,props.metadata.downvotes)
+        // eslint-disable-next-line
     }, [user])
 
 

@@ -11,7 +11,6 @@ const UserState = (props) => {
 
 
     const [user, setUser] = useState(auth.currentUser)
-    const [loading, setLoading] = useState(false)
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
