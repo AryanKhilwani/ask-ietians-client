@@ -57,7 +57,6 @@ const {logout} = context
   
   useEffect(() => {
     logout()
-    // TODO: clear x-auth-token
     Navigate('/dashboard')
     // eslint-disable-next-line
   }, [])
