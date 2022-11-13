@@ -65,12 +65,20 @@ const Vote = (props) => {
                 'x-auth-token': localStorage.getItem('x-auth-token')
             },
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if(res.status === 200){
+
+                    return res.json()
+                }
+                else{
+                    return res.json().then(err => {throw err;});
+                }
+            })
             .then((json) => {
                 console.log(json)
                 setUpvotes(json[0].upvotes.length)
                 setDownvotes(json[0].downvotes.length)
-            });
+            }).catch((r)=>console.log(r));
 
         if (up === 'default' && down === 'default') {
             setUp('orange')

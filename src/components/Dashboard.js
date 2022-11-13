@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import PostContext from '../context/post/postContext'
 import tagContext from '../context/tag/tagContext'
 import Posts from './Posts'
+import SortBar from './SortBar'
 import Tags from './Tags'
 
 const Dashboard = () => {
@@ -57,14 +58,13 @@ const Dashboard = () => {
   return (
     <>
       <Grid container sx={{ mt: 10 }}>
-        <Grid item xs={10} >
+        <Grid item xs={9} >
+          <SortBar/>
           <Posts posts={posts}/>
         </Grid>
-        <Grid item xs={2} sx={{ mt: 1 }}>
+        <Grid item xs={3} sx={{ mt: 1 }}>
           <Tags tags={tags} getPosts={getPosts} />
-
         </Grid>
-
       </Grid>
     </>
   )

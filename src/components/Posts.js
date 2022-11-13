@@ -15,7 +15,7 @@ const Posts = (props) => {
 
 
     return (
-        <div style={{ cursor: 'pointer', maxWidth: '90%' }}>
+        <div style={{ cursor: 'pointer', maxWidth: '100%' }}>
 
             {props.posts.map((post) => {
                 return (

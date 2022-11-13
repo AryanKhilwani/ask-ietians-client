@@ -12,6 +12,7 @@ import Replies from './Replies';
 import PostContext from '../context/post/postContext'
 import UserContext from '../context/user/userContext';
 import Vote from './Vote';
+import SortBar from './SortBar';
 const Postpage = () => {
 
     const context = useContext(UserContext)
@@ -67,57 +68,65 @@ const Postpage = () => {
 
 
             <Stack spacing={4} sx={{ mt: 10 }} alignItems='center'>
+                <Container >
 
-                <Card sx={{ p: 1, m: 1, width: '100%' }}>
-                    <Grid container>
-                        <Grid item>
-                            <Vote metadata={post} type={'posts'} />
+                    <Card sx={{ p: 1, m: 1}}>
+                        <Grid container>
+                            <Grid item>
+                                <Vote metadata={post} type={'posts'} />
 
-                        </Grid>
+                            </Grid>
 
-                        <Grid item sx={{ width: '95%' }}>
+                            <Grid item sx={{ width: '95%' }}>
 
-                            <CardContent sx={{ p: 1, minHeight: 84 }}>
-                                <Typography variant="h5" component="div" sx={{ m: 1 }}>
-                                    {post.title}
-                                </Typography>
-                                {post.author &&
-                                    <Typography variant="overline" sx={{ m: 1 }}>
-                                        {post.author.name}
+                                <CardContent sx={{ p: 1, minHeight: 84 }}>
+                                    <Typography variant="h5" component="div" sx={{ m: 1 }}>
+                                        {post.title}
                                     </Typography>
-                                }
-                                <Typography variant="body1" sx={{ m: 1 }}>
-                                    {post.description}
-                                </Typography>
-                                <Grid container>
-                                    {post.tags.map((tag) => {
-                                        return (
-                                            <Grid item key={tag._id}>
-                                                <Typography variant="body2" sx={{ m: 1 }}>
-                                                    {tag.name}
-                                                </Typography>
-                                            </Grid>
-                                        );
-                                    })
+                                    {post.author &&
+                                        <Typography variant="overline" sx={{ m: 1 }}>
+                                            {post.author.name}
+                                        </Typography>
                                     }
-                                </Grid>
-                                <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
-                                    {votes} Votes
-                                </Typography>
-                                <Typography variant="caption" sx={{ m: 1 }}>
-                                    {post.views} Views
-                                </Typography>
-                            </CardContent>
+                                    <Typography variant="body1" sx={{ m: 1 }}>
+                                        {post.description}
+                                    </Typography>
+                                    <Grid container>
+                                        {post.tags.map((tag) => {
+                                            return (
+                                                <Grid item key={tag._id}>
+                                                    <Typography variant="body2" sx={{ m: 1 }}>
+                                                        {tag.name}
+                                                    </Typography>
+                                                </Grid>
+                                            );
+                                        })
+                                        }
+                                    </Grid>
+                                    <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
+                                        {votes} Votes
+                                    </Typography>
+                                    <Typography variant="caption" sx={{ m: 1 }}>
+                                        {post.views} Views
+                                    </Typography>
+                                </CardContent>
 
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Card>
+                    </Card>
+
+                </Container>
                 {
                     user &&
                     <Container maxWidth='md'>
                         <Postreply />
                     </Container>
                 }
+
+                <Container>
+                    <SortBar />
+                </Container>
+
                 <Container>
                     <Replies id={id} />
                 </Container>

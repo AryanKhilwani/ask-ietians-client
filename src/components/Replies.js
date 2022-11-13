@@ -21,25 +21,6 @@ const Replies = (props) => {
     }, [num])
     const [votes, setVotes] = useState(0)
 
-    // {
-    //     "upvotes": [],
-    //     "downvotes": [
-    //       "ooZizoLt6XTcCujA0dRho2PX1BA2"
-    //     ],
-    //     "_id": "633c26d0659f220d5092e2dc",
-    //     "post": "633c20b5257cb925f86900e7",
-    //     "comment": "reply to me",
-    //     "author": {
-    //       "isAdmin": false,
-    //       "_id": "633c26d0659f220d5092e2db",
-    //       "name": "Akshat sharma",
-    //       "email": "akshat7509999412@gmail.com",
-    //       "uid": "ooZizoLt6XTcCujA0dRho2PX1BA2"
-    //     },
-    //     "time": "2022-10-04T12:28:00.878Z",
-    //     "__v": 6
-    //   },
-
     const handleUpvote = () => {
         setVotes(votes + 1)
     }
@@ -47,8 +28,8 @@ const Replies = (props) => {
     return (
         <>{replies && replies.map((reply) => {
             return (
-                <Card  sx={{ p: 1, m: 1 }} key={reply._id}> 
-                <Stack>
+                <Card  sx={{ m: 1 }} key={reply._id}> 
+                <Stack  sx={{ p: 1}}>
                     
                     <Typography variant="overline" sx={{ m: 1 }}>
                         {reply.author.name}
