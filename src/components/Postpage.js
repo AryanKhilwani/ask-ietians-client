@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Container, Grid, Stack } from "@mui/material";
+import { Chip, Container, Grid, Stack } from "@mui/material";
 import Postreply from './Postreply';
 import Replies from './Replies';
 
@@ -13,6 +13,7 @@ import PostContext from '../context/post/postContext'
 import UserContext from '../context/user/userContext';
 import Vote from './Vote';
 import SortBar from './SortBar';
+import Menu from './Menu';
 const Postpage = () => {
 
     const context = useContext(UserContext)
@@ -77,7 +78,7 @@ const Postpage = () => {
 
                             </Grid>
 
-                            <Grid item sx={{ width: '95%' }}>
+                            <Grid item sx={{ width: '92%' }}>
 
                                 <CardContent sx={{ p: 1, minHeight: 84 }}>
                                     <Typography variant="h5" component="div" sx={{ m: 1 }}>
@@ -91,13 +92,16 @@ const Postpage = () => {
                                     <Typography variant="body1" sx={{ m: 1 }}>
                                         {post.description}
                                     </Typography>
-                                    <Grid container>
+                                    <Grid container spacing={1}>
                                         {post.tags.map((tag) => {
                                             return (
                                                 <Grid item key={tag._id}>
-                                                    <Typography variant="body2" sx={{ m: 1 }}>
+                                                    {/* <Typography variant="body2" sx={{ m: 1 }}>
                                                         {tag.name}
                                                     </Typography>
+                                                     */}
+                                                    
+                                                    <Chip sx={{ ml: 1 }} label={tag.name} variant="outlined" />
                                                 </Grid>
                                             );
                                         })
@@ -106,11 +110,14 @@ const Postpage = () => {
                                     {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
                                         {votes} Votes
                                     </Typography> */}
-                                    <Typography variant="caption" sx={{ m: 1 }}>
+                                    {/* <Typography variant="caption" sx={{ m: 1 }}>
                                         {post.views} Views
-                                    </Typography>
+                                    </Typography> */}
                                 </CardContent>
 
+                            </Grid>
+                            <Grid>
+                                <Menu of='posts' reportID={post._id}/>
                             </Grid>
                         </Grid>
                     </Card>

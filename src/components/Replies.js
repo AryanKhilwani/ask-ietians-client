@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import Vote from "./Vote";
 import ReplyContext from '../context/reply/replyContext'
+import Menu from './Menu';
 
 const Replies = (props) => {
     const replycontext = useContext(ReplyContext)
@@ -20,40 +21,45 @@ const Replies = (props) => {
 
         // eslint-disable-next-line
     }, [num])
-    const [votes, setVotes] = useState(0)
+    // const [votes, setVotes] = useState(0)
 
-    const handleUpvote = () => {
-        setVotes(votes + 1)
-    }
+    // const handleUpvote = () => {
+    //     setVotes(votes + 1)
+    // }
 
     return (
         <>{replies && replies.map((reply) => {
             return (
-                <Card sx={{ m: 1,p:1 }} key={reply._id}>
 
-                        <Grid container>
-                            <Grid item>
-                                <Vote metadata={reply} type={'reply'} />
-                            </Grid>
-
-                    <CardContent>
+                <Card sx={{ my:1}} key={reply._id}>
+                    <Grid container sx={{mb:2,p:1}}>
+                        <Grid item>
+                            <Vote metadata={reply} type={'reply'} />
+                        </Grid>
+                        <Grid item sx={{ width: '92%' }}>
+                        <CardContent>
                             <Stack >
 
-                                <Typography variant="overline" sx={{ m: 1 }}>
+                                <Typography variant="overline" sx={{ mt: 1 }}>
                                     {reply.author.name}
                                 </Typography>
 
-                                <Typography variant="body1" sx={{ m: 1 }}>
+                                <Typography variant="body1" sx={{ my: 1 }}>
                                     {reply.comment}
                                 </Typography>
 
-                                <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
+                                {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
                                     {votes} Votes
-                                </Typography>
+                                </Typography> */}
                             </Stack>
 
-                    </CardContent>
-                        </Grid>
+                        </CardContent>
+                                </Grid>
+                                <Grid >
+                                    <Menu of='reply' reportID={reply._id}/>
+                                </Grid>
+
+                    </Grid>
 
                 </Card>
             )
