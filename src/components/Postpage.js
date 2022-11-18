@@ -103,9 +103,9 @@ const Postpage = () => {
                                         })
                                         }
                                     </Grid>
-                                    <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
+                                    {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
                                         {votes} Votes
-                                    </Typography>
+                                    </Typography> */}
                                     <Typography variant="caption" sx={{ m: 1 }}>
                                         {post.views} Views
                                     </Typography>
