@@ -20,12 +20,9 @@ const Posts = (props) => {
                 return (
                     <Box
                         key={post._id}
-
                     // component={NavLink}
-
                     // to={`/post/${post._id}`}
                     >
-
                         <Card sx={{ p: 1, m: 1 }} >
                             <Grid container>
                                 <Grid item>

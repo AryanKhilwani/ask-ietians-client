@@ -36,6 +36,9 @@ const CreatePost = () => {
   
   // let error = false;
   const [error, setError] = useState(false)
+  
+  const [errorT, setErrorT] = useState(false)
+  const [errorText, setErrorText] = useState(null)
 
   useEffect(() => {
     // fetchdata();
@@ -46,6 +49,8 @@ const CreatePost = () => {
 
 
   const handleChange = (e) => {
+    setErrorT(false)
+    setErrorText(null)
     setPost({ ...post, [e.target.name]: e.target.value })
 
   }
@@ -61,6 +66,10 @@ const CreatePost = () => {
   };
 
   const handleSubmit = async() => {
+    if(post.title.length<3){
+      setErrorT(true)
+      setErrorText('title should be at least 3 characters')
+    }
     const tagsArray = []
     tag.forEach(alltag => {
       tags.forEach(tagid => {
@@ -69,16 +78,16 @@ const CreatePost = () => {
         }
       });
     });
-    if(tagsArray.length>0){
+    if(tagsArray.length === 0){
+      setError(true)
+      setErrorText('Pick at least one tag')
+    }
+    if(tagsArray.length>0 && post.title.length>=3){
       setError(false)
       const goodpost = {title:post.title, description:post.description, tags:tagsArray}
       console.log(goodpost)
       const response = await addPost(goodpost)
       Navigate('/dashboard')
-
-    }
-    else{
-      setError(true)
     }
   }
 
@@ -104,7 +113,7 @@ const CreatePost = () => {
           <Typography variant='h4' sx={{ mt: 1 }}>
             Create Post
           </Typography>
-          <TextField sx={{ mt: 5 }} fullWidth id="outlined-basic" label="Title" variant="outlined" name='title' value={post.title} onChange={handleChange} />
+          <TextField sx={{ mt: 5 }} required error={errorT} fullWidth id="outlined-basic" label="Title" variant="outlined" name='title' value={post.title} onChange={handleChange} />
           <TextField sx={{ mt: 3 }} fullWidth id="outlined-basic" multiline rows={5} label="Description" variant="outlined" name='description' value={post.description} onChange={handleChange} />
 
           <FormControl sx={{ mt: 5, ml: 4 }} fullWidth component="fieldset" variant="standard" error={error}
@@ -127,7 +136,7 @@ const CreatePost = () => {
               }
 
             </FormGroup>
-            <FormHelperText disabled = {!error}>Check At Least One</FormHelperText>
+            <FormHelperText disabled = {!error}>{errorText}</FormHelperText>
           </FormControl>
           <Button variant='contained' sx={{ mt: 5, mb: 10 }} onClick={handleSubmit} >
             submit

@@ -11,6 +11,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { IconButton } from '@mui/material';
 
 import UserContext from '../context/user/userContext';
+import Report from './Report';
 
 const Menu = (props) => {
 
@@ -18,27 +19,33 @@ const Menu = (props) => {
     const { user } = context;
 
 
-    const HOST = `http://localhost:80/${props.of}`
-    
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
+
+    const [openModal, setOpen] = React.useState(false);
+    const handleOpenModal = () => setOpen(true);
+    
+    const handleCloseModal = () => setOpen(false);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleReport = ()=>{
-        console.log(props.of,props.reportID)
-        // TODO: report call
+    const handleReport = () => {
+        handleOpenModal();
+        handleClose()
     }
-    const handleShare = ()=>{
-// TODO: share function
+    const handleShare = () => {
+        // TODO: share function
     }
 
     return (
         <>
-        
+
             <IconButton
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
@@ -57,19 +64,26 @@ const Menu = (props) => {
             >
                 {user &&
                     <MenuItem onClick={handleReport}>
-                    <ListItemIcon>
-                        <FlagIcon color='error'/>
-                    </ListItemIcon>
-                    <ListItemText >Report</ListItemText>
-                </MenuItem>
-}
+                        <ListItemIcon>
+                            <FlagIcon color='error' />
+                        </ListItemIcon>
+                        <ListItemText >Report</ListItemText>
+                    </MenuItem>
+                }
                 <MenuItem onClick={handleShare}>
                     <ListItemIcon>
-                        <ShareIcon color='primary'/>
+                        <ShareIcon color='primary' />
                     </ListItemIcon>
                     <ListItemText >Share</ListItemText>
                 </MenuItem>
             </MenuMui>
+            <Report
+                open={openModal} 
+                handleOpen={handleOpenModal} 
+                setOpen={setOpen} 
+                handleClose={handleCloseModal}
+                id={props.reportID}
+                of={props.of}/>
         </>
     )
 }

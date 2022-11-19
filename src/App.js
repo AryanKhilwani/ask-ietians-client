@@ -17,6 +17,15 @@ import TagState from './context/tag/tagState';
 import UserContext from './context/user/userContext';
 import CreatePost from './components/CreatePost';
 import Home from './components/Home';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
+
 // eslint-disable-next-line 
 const auth = getAuth();
 
@@ -24,6 +33,7 @@ const auth = getAuth();
 function App() {
   return (
     <>
+    <ThemeProvider theme={darkTheme}>
       <PostState>
         <ReplyState>
           <TagState>
@@ -46,6 +56,7 @@ function App() {
           </TagState>
         </ReplyState>
       </PostState>
+      </ThemeProvider>
     </>
   );
 }

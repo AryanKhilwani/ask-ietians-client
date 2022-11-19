@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import PostContext from '../context/post/postContext'
 import tagContext from '../context/tag/tagContext'
+import CreateBar from './CreateBar'
 import Posts from './Posts'
 import SortBar from './SortBar'
 import Tags from './Tags'
@@ -57,8 +58,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <Grid container sx={{ mt: 10 }}>
-        <Grid item xs={9} >
+      <Grid container sx={{ mt: 10 }} spacing={1}>
+        <Grid item xs={9}>
+          <CreateBar/>
           <SortBar/>
           <Posts posts={posts}/>
         </Grid>

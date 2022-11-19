@@ -27,6 +27,7 @@ const Postreply = () => {
         <Stack spacing={2} alignItems='center'>
             <TextField
                 id="outlined-multiline-flexible"
+                placeholder="Share your thoughts..."
                 fullWidth
                 multiline
                 rows={4}

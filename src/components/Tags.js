@@ -15,13 +15,13 @@ const Tags = (props) => {
                             
                             {props.tags.map((tag) => {
                                 return (
-                                    <Grid>
+                                    <Grid key={tag._id} >
 
 
                                     <Button variant='outlined' onClick={() => {
                                         props.getPosts(tag)
                                     }
-                                    } key={tag._id} sx={{
+                                    } sx={{
                                         color: 'black',
                                         '--Grid-borderWidth': '1px',
                                         borderTop: 'var(--Grid-borderWidth) solid',
