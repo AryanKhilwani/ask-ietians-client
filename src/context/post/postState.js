@@ -19,7 +19,8 @@ const PostState = (props) => {
         });
         const jsondata = await response.json()
         // console.log(jsondata);
-        
+        // objs.sort((a,b) => a.last_nom - b.last_nom);
+        jsondata.sort((a,b)=> b.score - a.score)
         setPost(jsondata)
         return jsondata
 
