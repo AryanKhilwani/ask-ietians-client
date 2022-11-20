@@ -25,7 +25,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchdata()
-
     fetchalltags();
     // eslint-disable-next-line 
   }, [])
@@ -53,6 +52,23 @@ const Dashboard = () => {
     { _id: '1', name: 'All posts' },
     ...tag]
 
+  const handleHot = async () => {
+    setPosts([])
+    let hot = posts
+    await hot.sort((a, b) => b.score - a.score)
+    setPosts(hot)
+    console.log(posts)
+  }
+  const handleNew = async() => {
+    setPosts([])
+    
+    console.log(posts)
+    let newPosts = posts
+    await newPosts.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+    setPosts(newPosts)
+    console.log(posts)
+
+  }
 
 
 
@@ -60,9 +76,9 @@ const Dashboard = () => {
     <>
       <Grid container sx={{ mt: 10 }} spacing={1}>
         <Grid item xs={9}>
-          <CreateBar/>
-          <SortBar/>
-          <Posts posts={posts}/>
+          <CreateBar />
+          <SortBar hot={handleHot} new={handleNew} />
+          <Posts posts={posts} />
         </Grid>
         <Grid item xs={3} sx={{ mt: 1 }}>
           <Tags tags={tags} getPosts={getPosts} />

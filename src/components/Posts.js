@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,6 +11,9 @@ import Menu from "./Menu";
 const Posts = (props) => {
 
     const Navigate = useNavigate()
+    useEffect(() => {
+    }, [props])
+    
 
 
     return (

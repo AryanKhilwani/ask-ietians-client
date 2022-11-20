@@ -9,14 +9,14 @@ import React from 'react'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-const SortBar = () => {
+const SortBar = (props) => {
 
     const [alignment, setAlignment] = React.useState('best');
 
     const handleChange = (e, newAlignment) => {
         if (newAlignment !== null) {
             setAlignment(newAlignment);
-            console.log(e.target.value)
+            // console.log(e.target.value)
         }
     };
     return (
@@ -38,16 +38,18 @@ const SortBar = () => {
                             exclusive
                             onChange={handleChange}
                         >
-                            <ToggleButton value="best" color='success'>
+                            <ToggleButton value="best" color='success' onClick={props.hot}>
+                                <Box>
+
                                 <Stack direction='row' spacing={1}>
                                 <TrendingUpIcon />
                                 <Typography>
                                 Best
                                 </Typography>
-
                                 </Stack>
+                                </Box>
                             </ToggleButton>
-                            <ToggleButton value="new" color='primary'>
+                            <ToggleButton value="new" color='primary' onClick={props.new}>
                             <Stack direction='row' spacing={1}>
                                 <AccessTimeFilledIcon />
                                 <Typography>

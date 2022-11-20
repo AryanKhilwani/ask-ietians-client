@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Vote from "./Vote";
 import ReplyContext from '../context/reply/replyContext'
 import Menu from './Menu';
+import SortBar from './SortBar';
 
 const Replies = (props) => {
     const replycontext = useContext(ReplyContext)
@@ -27,43 +28,66 @@ const Replies = (props) => {
     //     setVotes(votes + 1)
     // }
 
+    const handleHot = async () => {
+        setReplies([])
+        let hot = replies
+        // await hot.sort((a, b) => b.score - a.score)
+        setReplies(hot)
+    }
+    const handleNew = async () => {
+        setReplies([])
+
+        let newPosts = replies
+        await newPosts.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
+        setReplies(newPosts)
+
+    }
+
     return (
-        <>{replies && replies.map((reply) => {
-            return (
+        <>
+            <Stack>
 
-                <Card sx={{ my:1}} key={reply._id}>
-                    <Grid container sx={{mb:2,p:1}}>
-                        <Grid item>
-                            <Vote metadata={reply} type={'reply'} />
-                        </Grid>
-                        <Grid item sx={{ width: '92%' }}>
-                        <CardContent>
-                            <Stack >
+                <SortBar hot={handleHot} new={handleNew} />
+                {replies && replies.map((reply) => {
+                    return (
 
-                                <Typography variant="overline" sx={{ mt: 1 }}>
-                                    {reply.author.name}
-                                </Typography>
+                        <Card sx={{ my: 1 }} key={reply._id}>
+                            <Grid container sx={{ mb: 2, p: 1 }}>
+                                <Grid item>
+                                    <Vote metadata={reply} type={'reply'} />
+                                </Grid>
+                                <Grid item sx={{ width: '92%' }}>
+                                    <CardContent>
+                                        <Stack >
 
-                                <Typography variant="body1" sx={{ my: 1 }}>
-                                    {reply.comment}
-                                </Typography>
+                                            <Typography variant="overline" sx={{ mt: 1 }}>
+                                                {reply.author.name}
+                                            </Typography>
 
-                                {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
+                                            <Typography variant="body1" sx={{ my: 1 }}>
+                                                {reply.comment}
+                                            </Typography>
+
+                                            {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
                                     {votes} Votes
                                 </Typography> */}
-                            </Stack>
+                                        </Stack>
 
-                        </CardContent>
+                                    </CardContent>
                                 </Grid>
                                 <Grid >
-                                    <Menu of='reply' reportID={reply._id}/>
+                                    <Menu of='reply' reportID={reply._id} />
                                 </Grid>
 
-                    </Grid>
+                            </Grid>
 
-                </Card>
-            )
-        })}</>
+                        </Card>
+
+                    )
+                })}
+
+            </Stack>
+        </>
     )
 }
 

@@ -58,9 +58,6 @@ const Postpage = () => {
     //     "__v": 22
     //   }
 
-    const handleUpvote = () => {
-        setVotes(votes + 1)
-    }
 
     return (<>
         {
@@ -131,7 +128,6 @@ const Postpage = () => {
                 }
 
                 <Container>
-                    <SortBar />
                 </Container>
 
                 <Container>
