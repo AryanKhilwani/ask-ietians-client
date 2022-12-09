@@ -12,16 +12,16 @@ import Container from '@mui/material/Container';
 import {Link as Navlink, useNavigate} from 'react-router-dom'
 import '../Firebase/firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import GoogleIcon from '@mui/icons-material/Google';
 
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      {/* {'Copyright © '} */}
+      <Link color="inherit" href="/">
+        Ask IETian
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -120,7 +120,7 @@ export default function SignIn() {
               Sign in
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-              <TextField
+              {/* <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -139,7 +139,7 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
+              /> */}
               {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -147,12 +147,13 @@ export default function SignIn() {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 10, mb: 10 }}
                 onClick={SignInWithFirebase}
               >
-                Sign In with G
+                Sign In with
+                <GoogleIcon/>
               </Button>
-              <Button
+              {/* <Button
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -171,7 +172,7 @@ export default function SignIn() {
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Box>
           </Container>
         </Box>

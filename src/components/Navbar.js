@@ -15,8 +15,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { getAuth } from "firebase/auth";
 import '../Firebase/firebase';
 import UserContext from '../context/user/userContext';
-const pages = ['Dashboard'];
-const settings = ['createpost','Profile', 'Logout'];
+// const pages = ['Dashboard'];
+const pages = [];
+const settings = [
+  'createpost',
+  'Profile',
+  'Logout'
+];
 
 const auth = getAuth();
 
@@ -61,7 +66,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            AskIETian
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -116,7 +121,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            AskIETian
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -142,7 +147,7 @@ const ResponsiveAppBar = () => {
 
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={user.displayName} src={user.photoURL} referrerPolicy={`no-referrer`}/>
+                    <Avatar alt={user.displayName} src={user.photoURL} referrerPolicy={`no-referrer`} />
                   </IconButton>
                 </Tooltip>
                 <Menu

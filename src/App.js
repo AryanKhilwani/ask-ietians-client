@@ -48,7 +48,7 @@ function App() {
                 <Route exact path='/signup' element={<SignUp />} />
                 <Route exact path='/dashboard' element={<Dashboard />} />
                 <Route exact path="/post/:id" element={<Postpage />}/>
-                <Route exact path='/' element={<Home />} />
+                <Route exact path='/' element={<Dashboard />} />
                 <Route exact path='/logout' element={<Logout />} />
               </Routes>
             </Container>
