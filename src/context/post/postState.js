@@ -3,7 +3,7 @@ import PostContext from './postContext'
 
 const PostState = (props) => {
 
-    const HOST = 'http://localhost:80/posts'
+    const HOST = '${process.env.APIURI}/posts'
     const posts = []
 
     const [post, setPost] = useState(posts)

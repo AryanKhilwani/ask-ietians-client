@@ -3,7 +3,7 @@ import TagContext from './tagContext'
 
 const TagState = (props) => {
 
-    const HOST = 'http://localhost:80/tags'
+    const HOST = '${process.env.APIURI}/tags'
     const tags = []
 
     const [tag, setTag] = useState(tags)
