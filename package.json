@@ -2,6 +2,7 @@
   "name": "ask-ietians-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ask-ietian.netlify.app/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
