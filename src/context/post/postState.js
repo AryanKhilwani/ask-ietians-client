@@ -3,7 +3,7 @@ import PostContext from './postContext'
 
 const PostState = (props) => {
 
-    const HOST = '${process.env.APIURI}/posts'
+    const HOST = `${process.env.REACT_APP_APIURI}/posts`
     const posts = []
 
     const [post, setPost] = useState(posts)

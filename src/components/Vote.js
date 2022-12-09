@@ -28,7 +28,7 @@ const theme = createTheme({
 
 
 const Vote = (props) => {
-    const HOST = `${process.env.APIURI}/${props.type}`
+    const HOST = `${process.env.REACT_APP_APIURI}/${props.type}`
 
 
     const context = useContext(UserContext)

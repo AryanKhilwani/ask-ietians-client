@@ -3,7 +3,7 @@ import ReplyContext from './replyContext'
 
 const ReplyState = (props) => {
 
-    const HOST = '${process.env.APIURI}/reply'
+    const HOST = `${process.env.REACT_APP_APIURI}/reply`
     const replies = []
 
     const [reply, setReply] = useState(replies)

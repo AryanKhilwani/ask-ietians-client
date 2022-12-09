@@ -25,7 +25,7 @@ const style = {
 
 export default function BasicModal(props) {
 
-    const HOST = `${process.env.APIURI}/${props.of}`
+    const HOST = `${process.env.REACT_APP_APIURI}/${props.of}`
     const handleClose = () => props.setOpen(false);
     const [report, setReport] = useState('')
     const handleSubmit = async () => {

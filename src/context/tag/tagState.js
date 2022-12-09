@@ -3,7 +3,7 @@ import TagContext from './tagContext'
 
 const TagState = (props) => {
 
-    const HOST = '${process.env.APIURI}/tags'
+    const HOST = `${process.env.REACT_APP_APIURI}/tags`
     const tags = []
 
     const [tag, setTag] = useState(tags)
