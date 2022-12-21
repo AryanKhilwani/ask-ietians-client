@@ -40,7 +40,9 @@ const Menu = (props) => {
         handleClose()
     }
     const handleShare = () => {
-        // TODO: share function
+        console.log(`${process.env.REACT_APP_APP}/post/${props.reportID}`)
+        navigator.clipboard.writeText(`${process.env.REACT_APP_APP}/post/${props.reportID}`);
+        handleClose()
     }
 
     return (
@@ -70,12 +72,14 @@ const Menu = (props) => {
                         <ListItemText >Report</ListItemText>
                     </MenuItem>
                 }
-                <MenuItem onClick={handleShare}>
+                {props.of === 'posts' &&
+                    <MenuItem onClick={handleShare}>
                     <ListItemIcon>
                         <ShareIcon color='primary' />
                     </ListItemIcon>
                     <ListItemText >Share</ListItemText>
                 </MenuItem>
+                }
             </MenuMui>
             <Report
                 open={openModal} 

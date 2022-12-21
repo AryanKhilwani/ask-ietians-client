@@ -144,7 +144,8 @@ const Postpage = () => {
                     <Container>
                         <Replies id={id} />
                     </Container>
-                </Stack> :
+                </Stack>
+                :
                 <Container sx={{ mt: 11 }}>
 
                     <Card sx={{ m: 1 }}>

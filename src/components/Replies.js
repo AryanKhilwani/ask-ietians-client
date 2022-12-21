@@ -50,7 +50,7 @@ const Replies = (props) => {
         <>
             <SortBar hot={handleHot} new={handleNew} />
             {loading ?
-            <Stack spacing={1}>
+            <Stack spacing={1} >
             <Card>
                 <Skeleton sx={{ bgcolor: 'white' }} variant="rounded" height={150} animation="wave" />
             </Card>
@@ -59,7 +59,7 @@ const Replies = (props) => {
             </Card>
             </Stack>
             :
-                <Stack>
+                <Stack sx={{m:1}}>
                     {/* <Card>
                         <Skeleton sx={{ bgcolor: 'white' }} variant="rounded" height={200} animation="wave" />
 
