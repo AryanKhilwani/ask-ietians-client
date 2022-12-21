@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Chip, Container, Grid, Stack } from "@mui/material";
+import { Chip, Container, Grid, Skeleton, Stack } from "@mui/material";
 import Postreply from './Postreply';
 import Replies from './Replies';
 
@@ -14,6 +14,7 @@ import UserContext from '../context/user/userContext';
 import Vote from './Vote';
 import SortBar from './SortBar';
 import Menu from './Menu';
+import Spinner from './Spinner';
 const Postpage = () => {
 
     const context = useContext(UserContext)
@@ -24,15 +25,17 @@ const Postpage = () => {
 
     const [votes, setVotes] = useState(0)
     const [post, setPost] = useState()
+    const [loading, setLoading] = useState(false)
 
     const { id } = useParams();
     const fetchdata = async () => {
         const data = await getPostById(id);
-        console.log(data)
         setPost(data)
+        setLoading(false)
         setVotes(data.upvotes.length - data.downvotes.length)
     }
     useEffect(() => {
+        setLoading(true)
         fetchdata();
         // eslint-disable-next-line
     }, [])
@@ -61,79 +64,94 @@ const Postpage = () => {
 
     return (<>
         {
-            post &&
+            post ?
 
 
+                <Stack spacing={4} sx={{ mt: 10 }} alignItems='center'>
 
-            <Stack spacing={4} sx={{ mt: 10 }} alignItems='center'>
-                <Container >
+                    <Container >
+                        {
+                            loading ? (<Stack sx={{ m: 1 }}>
+                                <Card>
 
-                    <Card sx={{ p: 1, m: 1}}>
-                        <Grid container>
-                            <Grid item>
-                                <Vote metadata={post} type={'posts'} />
+                                    <Skeleton sx={{ bgcolor: 'white' }} variant="rounded" height={200} animation="wave" />
+                                </Card>
+                            </Stack>) :
 
-                            </Grid>
 
-                            <Grid item sx={{ width: '92%' }}>
+                                <Card sx={{ p: 1, m: 1 }}>
+                                    <Grid container>
+                                        <Grid item>
+                                            <Vote metadata={post} type={'posts'} />
 
-                                <CardContent sx={{ p: 1, minHeight: 84 }}>
-                                    <Typography variant="h5" component="div" sx={{ m: 1 }}>
-                                        {post.title}
-                                    </Typography>
-                                    {post.author &&
-                                        <Typography variant="overline" sx={{ m: 1 }}>
-                                            {post.author.name}
-                                        </Typography>
-                                    }
-                                    <Typography variant="body1" sx={{ m: 1 }}>
-                                        {post.description}
-                                    </Typography>
-                                    <Grid container spacing={1}>
-                                        {post.tags.map((tag) => {
-                                            return (
-                                                <Grid item key={tag._id}>
-                                                    {/* <Typography variant="body2" sx={{ m: 1 }}>
+                                        </Grid>
+
+                                        <Grid item sx={{ width: '92%' }}>
+
+                                            <CardContent sx={{ p: 1, minHeight: 84 }}>
+                                                <Typography variant="h5" component="div" sx={{ m: 1 }}>
+                                                    {post.title}
+                                                </Typography>
+                                                {post.author &&
+                                                    <Typography variant="overline" sx={{ m: 1 }}>
+                                                        {post.author.name}
+                                                    </Typography>
+                                                }
+                                                <Typography variant="body1" sx={{ m: 1 }}>
+                                                    {post.description}
+                                                </Typography>
+                                                <Grid container spacing={1}>
+                                                    {post.tags.map((tag) => {
+                                                        return (
+                                                            <Grid item key={tag._id}>
+                                                                {/* <Typography variant="body2" sx={{ m: 1 }}>
                                                         {tag.name}
                                                     </Typography>
                                                      */}
-                                                    
-                                                    <Chip sx={{ ml: 1 }} label={tag.name} variant="outlined" />
+
+                                                                <Chip sx={{ ml: 1 }} label={tag.name} variant="outlined" />
+                                                            </Grid>
+                                                        );
+                                                    })
+                                                    }
                                                 </Grid>
-                                            );
-                                        })
-                                        }
-                                    </Grid>
-                                    {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
+                                                {/* <Typography variant="caption" sx={{ m: 1 }} onClick={handleUpvote}>
                                         {votes} Votes
                                     </Typography> */}
-                                    {/* <Typography variant="caption" sx={{ m: 1 }}>
+                                                {/* <Typography variant="caption" sx={{ m: 1 }}>
                                         {post.views} Views
                                     </Typography> */}
-                                </CardContent>
+                                            </CardContent>
 
-                            </Grid>
-                            <Grid>
-                                <Menu of='posts' reportID={post._id}/>
-                            </Grid>
-                        </Grid>
-                    </Card>
-
-                </Container>
-                {
-                    user &&
-                    <Container maxWidth='md'>
-                        <Postreply />
+                                        </Grid>
+                                        <Grid>
+                                            <Menu of='posts' reportID={post._id} />
+                                        </Grid>
+                                    </Grid>
+                                </Card>
+                        }
                     </Container>
-                }
+                    {
+                        user &&
+                        <Container maxWidth='md'>
+                            <Postreply />
+                        </Container>
+                    }
 
-                <Container>
+                    <Container>
+                    </Container>
+
+                    <Container>
+                        <Replies id={id} />
+                    </Container>
+                </Stack> :
+                <Container sx={{ mt: 11 }}>
+
+                    <Card sx={{ m: 1 }}>
+                        <Skeleton sx={{ bgcolor: 'white' }} variant="rounded" height={200} animation="wave" />
+                    </Card>
                 </Container>
 
-                <Container>
-                    <Replies id={id} />
-                </Container>
-            </Stack>
         }
     </>
     )
