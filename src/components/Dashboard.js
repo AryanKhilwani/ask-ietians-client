@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Card, CardContent, Grid } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import PostContext from '../context/post/postContext'
 import tagContext from '../context/tag/tagContext'
@@ -7,6 +7,10 @@ import Posts from './Posts'
 import SortBar from './SortBar'
 import Tags from './Tags'
 
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+
+
 const Dashboard = () => {
   const postcontext = useContext(PostContext)
   const { post, fetchallposts } = postcontext
@@ -14,16 +18,21 @@ const Dashboard = () => {
   const tagcontext = useContext(tagContext)
   const { tag, fetchalltags } = tagcontext
 
-  let allposts = []
-
   const [posts, setPosts] = useState([])
+
+  const [loading, setLoading] = useState(false)
+
+  let allposts = []
 
   const fetchdata = async () => {
     allposts = await fetchallposts();
     setPosts(allposts)
+    
+    setLoading(false)
   }
 
   useEffect(() => {
+    setLoading(true)
     fetchdata()
     fetchalltags();
     // eslint-disable-next-line 
@@ -54,18 +63,21 @@ const Dashboard = () => {
 
   const handleHot = async () => {
     setPosts([])
+    setLoading(true)
     let hot = posts
     await hot.sort((a, b) => b.score - a.score)
     setPosts(hot)
+    setLoading(false)
     console.log(posts)
   }
-  const handleNew = async() => {
+  const handleNew = async () => {
     setPosts([])
-    
+    setLoading(true)
     console.log(posts)
     let newPosts = posts
     await newPosts.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime())
     setPosts(newPosts)
+    setLoading(false)
     console.log(posts)
 
   }
@@ -78,7 +90,21 @@ const Dashboard = () => {
         <Grid item xs={9}>
           <CreateBar />
           <SortBar hot={handleHot} new={handleNew} />
-          <Posts posts={posts} />
+          {!loading ?
+            <Posts posts={posts} />
+            : (
+              <Stack spacing={1} sx={{ m: 1 }}>
+                <Card>
+                <Skeleton  sx={{ bgcolor: 'white' }} variant="rounded" height={200}  animation="wave"/>
+              
+                </Card>
+                <Card>
+                <Skeleton  sx={{ bgcolor: 'white' }} variant="rounded" height={400}  animation="wave"/>
+              
+                </Card>
+              </Stack>
+            )
+          }
         </Grid>
         <Grid item xs={3} sx={{ mt: 1 }}>
           <Tags tags={tags} getPosts={getPosts} />
