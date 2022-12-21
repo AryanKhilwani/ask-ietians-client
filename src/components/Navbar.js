@@ -18,7 +18,7 @@ import UserContext from '../context/user/userContext';
 const pages = ['Dashboard'];
 const settings = [
   'createpost',
-  // 'Profile',
+  'Profile',
   'Logout'
 ];
 

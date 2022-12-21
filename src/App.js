@@ -19,6 +19,7 @@ import CreatePost from './components/CreatePost';
 import Home from './components/Home';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Profile from './components/Profile';
 
 const darkTheme = createTheme({
   palette: {
@@ -46,6 +47,8 @@ function App() {
 
                 <Route exact path='/createpost' element={<CreatePost/>} />
                 <Route exact path='/signup' element={<SignUp />} />
+                
+                <Route exact path='/profile' element={<Profile />} />
                 <Route exact path='/dashboard' element={<Dashboard />} />
                 <Route exact path="/post/:id" element={<Postpage />}/>
                 <Route exact path='/' element={<Dashboard />} />
